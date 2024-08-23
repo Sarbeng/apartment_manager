@@ -42,6 +42,50 @@ class RolesAndPermissionsSeeder extends Seeder
          $permission2 = Permission::create(['name' => 'read: permission']);
          $permission3 = Permission::create(['name' => 'update: permission']);
          $permission4 = Permission::create(['name' => 'delete: permission']);
+
+         // TENANT MODEL
+         $permission1 = Permission::create(['name' => 'create: tenant']);
+         $permission2 = Permission::create(['name' => 'read: tenant']);
+         $permission3 = Permission::create(['name' => 'update: tenant']);
+         $permission4 = Permission::create(['name' => 'delete: tenant']);
+
+         // AMENITY MODEL
+         $permission1 = Permission::create(['name' => 'create: amenity']);
+         $permission2 = Permission::create(['name' => 'read: amenity']);
+         $permission3 = Permission::create(['name' => 'update: amenity']);
+         $permission4 = Permission::create(['name' => 'delete: amenity']);
+
+         // Apartment MODEL
+         $permission1 = Permission::create(['name' => 'create: apartment']);
+         $permission2 = Permission::create(['name' => 'read: apartment']);
+         $permission3 = Permission::create(['name' => 'update: apartment']);
+         $permission4 = Permission::create(['name' => 'delete: apartment']);
+
+         // Apartmen block MODEL
+         $permission1 = Permission::create(['name' => 'create: apartment_block']);
+         $permission2 = Permission::create(['name' => 'read: apartment_block']);
+         $permission3 = Permission::create(['name' => 'update: apartment_block']);
+         $permission4 = Permission::create(['name' => 'delete: apartment_block']);
+
+         // Apartment amenity MODEL
+         $permission1 = Permission::create(['name' => 'create: apartment_amenity']);
+         $permission2 = Permission::create(['name' => 'read: apartment_amenity']);
+         $permission3 = Permission::create(['name' => 'update: apartment_amenity']);
+         $permission4 = Permission::create(['name' => 'delete: apartment_amenity']);
+
+          // Payment MODEL
+          $permission1 = Permission::create(['name' => 'create: payment']);
+          $permission2 = Permission::create(['name' => 'read: payment']);
+          $permission3 = Permission::create(['name' => 'update: payment']);
+          $permission4 = Permission::create(['name' => 'delete: payment']);
+
+           // Maintenance Requests MODEL
+         $permission1 = Permission::create(['name' => 'create: maintenance_request']);
+         $permission2 = Permission::create(['name' => 'read: maintenance_request']);
+         $permission3 = Permission::create(['name' => 'update: maintenance_request']);
+         $permission4 = Permission::create(['name' => 'delete: maintenance_request']);
+
+         
  
          // ADMINS
          $adminPermission1 = Permission::create(['name' => 'read: admin']);

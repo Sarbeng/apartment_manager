@@ -23,8 +23,8 @@ return new class extends Migration
         // creating the apartment amenities table
         Schema::create('apartment_amenities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id');
-            $table->foreignId('amenities_id');
+            $table->foreignId('apartment_id')->constrained();
+            $table->foreignId('amenities_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,7 +32,7 @@ return new class extends Migration
         // payments issued
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tenant_id');
+            $table->foreignId('tenant_id')->constrained();
             $table->decimal('amount',10,2);
             $table->date('payment_date');
             $table->enum('payment_method',['card','online','cheque','cash','mobile money']);

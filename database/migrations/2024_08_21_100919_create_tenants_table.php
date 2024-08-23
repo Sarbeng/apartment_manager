@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('apartment_blocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('address');
             $table->integer('number_of_apartments');
             $table->softDeletes();
@@ -27,7 +27,7 @@ return new class extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->string('apartment_number');
-            $table->foreignId('apartment_block_id');
+            $table->foreignId('apartment_block_id')->constrained();
             $table->boolean('is_occupied');
             $table->softDeletes();
             $table->timestamps();
@@ -36,8 +36,8 @@ return new class extends Migration
         //creating tenants table
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('apartment_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('apartment_id')->constrained();
             $table->dateTime('move_in_date');
             $table->dateTime('move_out_date');
             $table->softDeletes();
