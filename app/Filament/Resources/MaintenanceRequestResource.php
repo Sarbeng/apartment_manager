@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ApartmentBlockResource\Pages;
-use App\Filament\Resources\ApartmentBlockResource\RelationManagers;
-use App\Models\ApartmentBlock;
+use App\Filament\Resources\MaintenanceRequestResource\Pages;
+use App\Filament\Resources\MaintenanceRequestResource\RelationManagers;
+use App\Models\MaintenanceRequest;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ApartmentBlockResource extends Resource
+class MaintenanceRequestResource extends Resource
 {
-    protected static ?string $model = ApartmentBlock::class;
+    protected static ?string $model = MaintenanceRequest::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,18 +23,14 @@ class ApartmentBlockResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('user_id')
+                Forms\Components\TextInput::make('tenant_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('address')
+                Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('number_of_apartments')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\TextInput::make('status')
+                    ->required(),
             ]);
     }
 
@@ -42,16 +38,12 @@ class ApartmentBlockResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('tenant_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('address')
+                Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('number_of_apartments')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('status'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
@@ -88,9 +80,9 @@ class ApartmentBlockResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListApartmentBlocks::route('/'),
-            'create' => Pages\CreateApartmentBlock::route('/create'),
-            'edit' => Pages\EditApartmentBlock::route('/{record}/edit'),
+            'index' => Pages\ListMaintenanceRequests::route('/'),
+            'create' => Pages\CreateMaintenanceRequest::route('/create'),
+            'edit' => Pages\EditMaintenanceRequest::route('/{record}/edit'),
         ];
     }
 }

@@ -23,7 +23,16 @@ class TenantResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('user_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('apartment_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\DateTimePicker::make('move_in_date')
+                    ->required(),
+                Forms\Components\DateTimePicker::make('move_out_date')
+                    ->required(),
             ]);
     }
 
@@ -31,7 +40,30 @@ class TenantResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('user_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('apartment_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('move_in_date')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('move_out_date')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

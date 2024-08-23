@@ -23,7 +23,14 @@ class ApartmentResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('apartment_number')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('apartment_block_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\Toggle::make('is_occupied')
+                    ->required(),
             ]);
     }
 
@@ -31,7 +38,25 @@ class ApartmentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('apartment_number')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('apartment_block_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('is_occupied')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
