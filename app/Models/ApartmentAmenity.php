@@ -10,4 +10,9 @@ class ApartmentAmenity extends Model
     use HasFactory;
 
     protected $table = 'apartment_amenities';
+
+    protected $fillable = [
+        'apartment_id',
+        'amenities_id'
+    ];
 }

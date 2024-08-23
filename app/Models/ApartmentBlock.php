@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ApartmentBlock extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'user_id',
+        'address',
+        'number_of_apartments'
+    ];
 }
