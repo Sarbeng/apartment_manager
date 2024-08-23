@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('apartment_block_id')->constrained();
+            $table->string('phone_number');
+            $table->string('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
