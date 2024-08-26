@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ApartmentResource\Pages;
 use App\Filament\Resources\ApartmentResource\RelationManagers;
 use App\Models\Apartment;
+use App\Models\ApartmentBlock;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,9 +27,10 @@ class ApartmentResource extends Resource
                 Forms\Components\TextInput::make('apartment_number')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('apartment_block_id')
+                Forms\Components\Select::make('apartment_block_id')
+                    ->options(ApartmentBlock::all('name','id')->pluck('name','id'))
                     ->required()
-                    ->numeric(),
+                    ->searchable(),
                 Forms\Components\Toggle::make('is_occupied')
                     ->required(),
             ]);

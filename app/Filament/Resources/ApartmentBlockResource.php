@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ApartmentBlockResource\Pages;
-use App\Filament\Resources\ApartmentBlockResource\RelationManagers;
-use App\Models\ApartmentBlock;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\User;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\ApartmentBlock;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ApartmentBlockResource\Pages;
+use App\Filament\Resources\ApartmentBlockResource\RelationManagers;
+use App\Filament\Resources\ApartmentBlockResource\RelationManagers\ApartmentsRelationManager;
 
 class ApartmentBlockResource extends Resource
 {
@@ -26,9 +28,12 @@ class ApartmentBlockResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('user_id')
+                    ->options(
+                        User::where('is_admin','!=',1)->pluck('name')
+                    )
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('address')
                     ->required()
                     ->maxLength(255),
@@ -82,6 +87,7 @@ class ApartmentBlockResource extends Resource
     {
         return [
             //
+            ApartmentsRelationManager::class,
         ];
     }
 

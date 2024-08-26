@@ -108,7 +108,7 @@ class UserResource extends Resource
     {
         return [
             RolesRelationManager::class,
-           // TenantsRelationManager::class
+            TenantsRelationManager::class
         ];
     }
 

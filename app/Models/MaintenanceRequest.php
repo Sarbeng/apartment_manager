@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MaintenanceRequest extends Model
 {
@@ -14,5 +15,10 @@ class MaintenanceRequest extends Model
         'description',
         'status'
     ];
+
+    protected function tenant () : BelongsTo
+    {
+        return $this->belongsTo(Tenant::class);
+    }
 
 }

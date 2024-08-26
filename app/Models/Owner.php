@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Owner extends Model
 {
@@ -15,4 +16,9 @@ class Owner extends Model
         'phone_number',
         'address'
     ];
+
+    protected function user () : HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }

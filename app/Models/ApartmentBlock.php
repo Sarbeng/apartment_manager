@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Apartment;
+
 
 class ApartmentBlock extends Model
 {
@@ -15,4 +18,9 @@ class ApartmentBlock extends Model
         'address',
         'number_of_apartments'
     ];
+
+    protected function apartments () : HasMany
+    {
+        return $this->hasMany(Apartment::class);
+    }
 }

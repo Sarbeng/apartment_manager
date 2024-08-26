@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Owner;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -228,6 +229,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ])->assignRole($userRole);
         }
+       
 
     }
 }

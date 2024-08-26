@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Amenity extends Model
 {
@@ -13,4 +14,10 @@ class Amenity extends Model
         'name',
         'description'
     ];
+
+    
+    protected function apartmentAmenities () : HasMany
+    {
+        return $this->hasMany(ApartmentAmenity::class);
+    }
 }

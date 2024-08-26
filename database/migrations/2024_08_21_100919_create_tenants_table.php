@@ -11,14 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+       
 
         // creating the apartment block
         Schema::create('apartment_blocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id')->constrained();
             $table->string('address');
-            $table->integer('number_of_apartments');
+            $table->foreignId('owner_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+          //creating tenants table
+          Schema::create('tenants', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            //$table->foreignId('apartment_id')->constrained()->cascadeOnDelete();
+            $table->date('move_in_date');
+            $table->date('move_out_date');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,22 +38,14 @@ return new class extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->string('apartment_number');
-            $table->foreignId('apartment_block_id')->constrained();
+            $table->foreignId('apartment_block_id')->constrained()->cascadeOnDelete();
+            //$table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->boolean('is_occupied');
             $table->softDeletes();
             $table->timestamps();
         });
 
-        //creating tenants table
-        Schema::create('tenants', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('apartment_id')->constrained();
-            $table->dateTime('move_in_date');
-            $table->dateTime('move_out_date');
-            $table->softDeletes();
-            $table->timestamps();
-        });
+       
     }
 
     /**

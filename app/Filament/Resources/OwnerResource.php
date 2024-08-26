@@ -2,23 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ApartmentBlockResource\RelationManagers\ApartmentsRelationManager;
 use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
-use App\Models\Tenant;
+use App\Models\Owner;
 use Filament\Forms\Form;
-use App\Models\Apartment;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\TenantResource\Pages;
+use App\Filament\Resources\OwnerResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\TenantResource\RelationManagers;
+use App\Filament\Resources\OwnerResource\RelationManagers;
+use App\Models\ApartmentBlock;
 
-class TenantResource extends Resource
+class OwnerResource extends Resource
 {
-    protected static ?string $model = Tenant::class;
+    protected static ?string $model = Owner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,17 +26,21 @@ class TenantResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->options(User::whereNot('is_admin','=','1')->pluck('name','id'))
+                    ->options(User::all()->pluck('name'))
                     ->required()
                     ->searchable(),
-                  Forms\Components\Select::make('apartment_id')
-                    ->options(Apartment::whereNotNull('id')->pluck('apartment_number','id'))
+                    
+                Forms\Components\Select::make('apartment_block_id')
+                    ->options(ApartmentBlock::all()->pluck('name','id'))
                     ->required()
                     ->searchable(),
-                Forms\Components\DateTimePicker::make('move_in_date')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('move_out_date')
-                    ->required(),
+                Forms\Components\TextInput::make('phone_number')
+                    ->tel()
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('address')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -48,15 +51,13 @@ class TenantResource extends Resource
                 Tables\Columns\TextColumn::make('user_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('apartment_id')
+                Tables\Columns\TextColumn::make('apartment_block_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('move_in_date')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('move_out_date')
-                    ->dateTime()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('phone_number')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
@@ -87,16 +88,15 @@ class TenantResource extends Resource
     {
         return [
             //
-            ApartmentsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTenants::route('/'),
-            'create' => Pages\CreateTenant::route('/create'),
-            'edit' => Pages\EditTenant::route('/{record}/edit'),
+            'index' => Pages\ListOwners::route('/'),
+            'create' => Pages\CreateOwner::route('/create'),
+            'edit' => Pages\EditOwner::route('/{record}/edit'),
         ];
     }
 }

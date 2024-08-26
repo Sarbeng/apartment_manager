@@ -23,8 +23,8 @@ return new class extends Migration
         // creating the apartment amenities table
         Schema::create('apartment_amenities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id')->constrained();
-            $table->foreignId('amenities_id')->constrained();
+            $table->foreignId('apartment_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('amenities_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,7 +32,7 @@ return new class extends Migration
         // payments issued
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tenant_id')->constrained();
+            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->decimal('amount',10,2);
             $table->date('payment_date');
             $table->enum('payment_method',['card','online','cheque','cash','mobile money']);
@@ -43,7 +43,7 @@ return new class extends Migration
         // maintenance requests
         Schema::create('maintenance_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tenant_id');
+            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('description');
             $table->enum('status',['pending','in progress','completed']);
             $table->softDeletes();
