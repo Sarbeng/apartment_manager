@@ -3,7 +3,7 @@
     @if ($label)
         <label class=""> {{$label}} </label>
     @endif
-    <input type="{{$type}}" placeholder="{{$placeholder}}" class="{{'border w-full'.$class}}"/>
+    <input type="{{$type}}" placeholder="{{$placeholder}}" class="{{$class.'border rounded w-full'}}"/>
     
 </div>
 

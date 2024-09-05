@@ -3,16 +3,17 @@
     @if ($label)
         <label class=""> {{$label}} </label>
     @endif
-    <div class="flex gap-1">
-        <input type="{{$type}}" placeholder="{{$placeholder}}" class="{{'border w-full'.$class}}"/>
+    <div class="flex w-full gap-1">
+        <input type="{{$type}}" placeholder="{{$placeholder}}" class="{{'border rounded w-full w-10/12 '.$class}}"/>
         {{-- Toggle Password Visibility --}}
-        <button type="button" wire:click="togglePasswordVisibility" class="  inset-y-0 right-0 flex items-center px-2">
+        <button type="button" wire:click="togglePasswordVisibility" class="inset-y-0 right-0 flex h-10 rounded justify-center items-center px-2 w-2/12 border">
             @if ($isPasswordVisible)
             {{--Show 'hide' icon --}}
-            hide
+           
+            <x-heroicon-o-eye-slash class="text-gray-800 w-5 h-5"/>
             @else
             {{--Show 'Show' icon --}}
-            Show
+            <x-heroicon-o-eye class="text-gray-800 w-5 h-5"/>
             @endif
         </button>
     </div>
