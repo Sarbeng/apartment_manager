@@ -27,7 +27,7 @@ class Login extends Component
             return redirect()->intended('/dashboard');
         } else {
             // Show an error message on failed login
-            session()->flash('error', 'Invalid login credentials.');
+            session()->flash('error', 'These credentials do not match our records');
         }
         
     }
