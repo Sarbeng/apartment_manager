@@ -17,6 +17,8 @@ class PasswordInput extends Component
     public $class = '';
 
     public $placeholder = '';
+    public $model;
+    public $name = '';
 
     public $isPasswordVisible = false;
 

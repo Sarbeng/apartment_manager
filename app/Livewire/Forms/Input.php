@@ -13,9 +13,10 @@ class Input extends Component
      */
     public $type = 'text';
     public $label = '';
-    public $class = '';
+    public $class;
 
     public $placeholder = '';
+    public $model = '';
 
     // adding a constructor for initializing variables if needed
     // public function mount ($) 

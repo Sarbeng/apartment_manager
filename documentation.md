@@ -8,6 +8,7 @@ I used livewire to create the app components
 
 I used Blade icons in this project
 https://laravel-news.com/package/blade-ui-kit-blade-heroicons
+https://blade-ui-kit.com/blade-icons?search=eye#search
 and configured it using
 <code>php artisan vendor:publish --tag=blade-heroicons-config</code>
 
