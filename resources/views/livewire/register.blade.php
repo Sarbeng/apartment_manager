@@ -5,31 +5,31 @@
         <x-application-logo logoText="UCC-IRB Registration" />
         <div class="grid grid-cols-2 grid-flow-row gap-4">
             <x-input wire:model="firstname" name="firstname" type="text" label="First Name" class="w-full"
-                placeholder="Enter your firstname" />
+                placeholder="" />
             <x-input wire:model="lastname" name="lastname" type="text" label="lastname" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
+            <x-input wire:model="other_names" name="other_names" type="text" label="Other names" class="w-full"
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
-            <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
-                placeholder="Enter your email" />
+                placeholder="" />
             <x-button class="bg-blue-700 hover:bg-blue-900 w-full px-24 mt-6" type="submit">
                 Register
             </x-button>
