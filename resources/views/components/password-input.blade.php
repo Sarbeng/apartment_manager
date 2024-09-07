@@ -1,11 +1,11 @@
-@props(['name'])
+@props(['name','class'])
 <div x-data="{ show: false }" class="mb-3">
     <label for="password" class=" mb-2 text-sm">Password</label>
 
     <div class="flex">
         <!-- Password Input -->
     <input name="{{$name}}" :type="show ? 'text' : 'password'" id="password" 
-    class=" border rounded-l w-full py-2 px-3 text-gray-700 leading-tight h-10"
+    class=" border rounded-l w-full py-2 px-3 text-gray-700 leading-tight h-10 {{$class}} "
     placeholder="Enter your password" {{$attributes}}>
 
 <!-- Toggle Checkbox -->
