@@ -4,7 +4,7 @@
        <x-application-logo logoText="UCC-IRB Login"/>
         <x-input wire:model="email" name="email" type="text" label="Email" class="w-full" placeholder="" />
         {{-- <x-input wire:model="password" name="password" type="password" label="Password" class="w-full" /> --}}
-        <x-password-input wire:model="password" name="password" class=""/>
+        <x-password-input wire:model="password" name="password" class="" label="password" toggle_password="toggle-password"/>
         <x-button class="bg-blue-700 hover:bg-blue-900" type="submit">
             Login
         </x-button>

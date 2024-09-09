@@ -1,6 +1,6 @@
-@props(['name','class'])
+@props(['name','class','label','toggle_password'])
 <div x-data="{ show: false }" class="mb-3">
-    <label for="password" class=" mb-2 text-sm">Password</label>
+    <label for="password" class=" mb-2 text-sm capitalize ">{{$label}}</label>
 
     <div class="flex">
         <!-- Password Input -->
@@ -10,8 +10,8 @@
 
 <!-- Toggle Checkbox -->
 <div class="px-2 flex items-center border rounded-r h-10">
-    <input type="checkbox" id="toggle-password" x-model="show" class="hidden">
-    <label for="toggle-password" class="cursor-pointer">
+    <input type="checkbox" id="{{$toggle_password}}" x-model="show" class="hidden">
+    <label for="{{$toggle_password}}" class="cursor-pointer">
         <x-heroicon-o-eye x-show="!show" class="h-5 w-5 text-gray-500" />
         <x-heroicon-o-eye-slash x-show="show" class="h-5 w-5 text-gray-500" />
     </label>

@@ -2,8 +2,9 @@
 
 namespace App\Livewire;
 
-use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Attributes\Validate;
+use Illuminate\Validation\Rules\Password;
 
 class Register extends Component
 {
@@ -13,32 +14,41 @@ class Register extends Component
     #[Validate('required')]
     public $lastname;
 
-    #[Validate('required')]
+    #[Validate('required|email')]
     public $email;
 
-    #[Validate('required')]
     public $other_names;
 
-    public $country_of_residence;
-    public $nationality;
+    #[Validate('required|min:6|confirmed')]
+    public $password;
 
-    public $research_field;
+    #[Validate('required')]
+    public $password_confirmation;
 
-    public $research_sub_field;
+    // public $country_of_residence;
+    // public $nationality;
 
-    public $alternative_email;
+    // public $research_field;
 
-    public $phone_number;
+    // public $research_sub_field;
 
-    public $postal_address;
+    // public $alternative_email;
 
-    public $affiliation;
+    // public $phone_number;
 
-    public $member_since;
+    // public $postal_address;
+
+    // public $affiliation;
+
+    // public $member_since;
 
     public function save()
     {
         $this->validate();
+        // $this->validate([
+        //     'password' => ['required', 'confirmed', Password::min(8)],
+        //     'password_confirmation' => ['required'],
+        // ]);
         dd("another");
     }
     public function render()

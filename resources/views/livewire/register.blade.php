@@ -1,6 +1,6 @@
-<div class="flex justify-center items-center h-fit bg-white lg:w-4/12 w-full  rounded shadow">
+<div class="flex justify-center items-center h-screen overflow-y-scroll bg-white lg:w-4/12 w-full  rounded shadow">
     {{-- Because she competes with no one, no one can compete with her. --}}
-    <form class="py-8 px-8 w-full " wire:submit="save">
+    <form class="py-8 px-8 w-full " wire:submit="save"> 
         <x-error-alert />
         <x-application-logo logoText="UCC-IRB Registration" />
         <div class="grid md:grid-cols-1 grid-cols-1 grid-flow-row gap-2">
@@ -14,10 +14,8 @@
                 placeholder="" />
             <x-input wire:model="email" name="email" type="text" label="Email" class="w-full"
                 placeholder="" />
-                <x-input wire:model="password" name="password" type="text" label="password" class="w-full"
-                placeholder="" />
-                <x-input wire:model="confirm_password" name="confirm_password" type="text" label="confirm password" class="w-full"
-                placeholder="" />
+                <x-password-input wire:model="password" name="password" class="" label="password" toggle_password="toggle_password"/>
+                <x-password-input wire:model="password_confirmation" name="password_confirmation" class="" label="confirm password" toggle_password="toggle"/>
             {{-- <x-input wire:model="country_of_residence" name="country_of_residence" type="text" label="country of residence" class="w-full"
                 placeholder="" /> --}}
             {{-- <x-input wire:model="nationality" name="nationality" type="text" label="nationality" class="w-full"
