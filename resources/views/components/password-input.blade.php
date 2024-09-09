@@ -19,7 +19,7 @@
     </div>
     <div class="w-full">
         @error($name)
-        <span class="text-red-600">{{$message}}</span>
+        <span class="text-red-600 flex items-center mt-1 gap-1"> <x-heroicon-o-exclamation-triangle class="h-5 w-5 text-red-600" /> {{$message}}</span>
         @enderror
        </div>
 </div>

@@ -19,10 +19,13 @@ class DatabaseSeeder extends Seeder
             CountriesSeeder::class
         ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
+        User::create([
+            'firstname' => 'Test',
+            'lastname' => 'User',
+            'other_names' => '',
             'email' => 'test@example.com',
             'password' => Hash::make('password')
         ]);
+      
     }
 }
