@@ -6,7 +6,7 @@
         <!-- Password Input -->
     <input name="{{$name}}" :type="show ? 'text' : 'password'" id="password" 
     class=" border rounded-l w-full py-2 px-3 text-gray-700 leading-tight h-10 {{$class}} "
-    placeholder="Enter your password" {{$attributes}}>
+    placeholder="" {{$attributes}}>
 
 <!-- Toggle Checkbox -->
 <div class="px-2 flex items-center border rounded-r h-10">
