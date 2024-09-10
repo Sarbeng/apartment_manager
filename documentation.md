@@ -24,6 +24,14 @@ The blade files were used to create components which can be found within <span c
 While the the livewire files are just having fun in the <span class="bg-blue-950 text-white p-2">"resources/views/livewire" </span> folder.
 I created all the components to be used within the livewire files. If you require to edit any component you can do so and it will immediately affect all files that use said component, so be careful i suppose lol.
 
+### Roles Structure
+I created middleware to handle my roles authentication, so i can restrict what users can handle what. 
+there are four users
+- SuperAdmin
+- Admin
+- Reviewer
+- User
+
 
 
 

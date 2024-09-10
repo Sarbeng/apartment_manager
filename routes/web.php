@@ -27,3 +27,9 @@ Route::get('logout', function (Request $request) {
     return redirect('/login');
 
 })->middleware('auth');
+
+/**
+ * User Protected Routes
+ */
+
+ 
