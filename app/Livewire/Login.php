@@ -36,12 +36,19 @@ class Login extends Component
             //dd($user->role);
 
             //checking the user roles to know where to redirect them
-            if ($user->role === 'admin') {
-                return redirect('admin');
+            if ($user->role === 'user') {
+                return redirect(route('user.dashboard'));
             }
-            elseif ($user->role === 'user') {
-                return redirect('dashboard');
+            elseif ($user->role === 'reviewer') {
+                return redirect(route('reviewer.dashboard'));
             }
+            elseif ($user->role === 'admin') {
+                return redirect(route('admin.dashboard'));
+            }
+            elseif ($user->role === 'super-admin') {
+                return redirect(route('super_admin.dashboard'));
+            }
+           
 
         } else {
             // Show an error message on failed login
