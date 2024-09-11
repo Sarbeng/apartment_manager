@@ -3,6 +3,8 @@
 use App\Livewire\Login;
 use App\Livewire\Dashboard;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Reviewer\Dashboard as ReviewerDashboard;
+use App\Livewire\SuperAdmin\Dashboard as SuperAdminDashboard;
 use App\Livewire\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,27 +34,33 @@ Route::get('logout', function (Request $request) {
 })->middleware('auth');
 
 /**
- * User Protected Routes
+ * All super admin routes go here
  */
-// Route::group(['middleware' => ['auth','user'], 'prefix' => 'user'], function () {
-//     //Route::resource('applications');
-//     Route::get('dashboard2',Dashboard::class);
-// });
-
-/**
- * Admin Protected Routes
- */
-// Route::group(['middleware' => ['auth','admin'], ], function () {
-//     //Route::resource('applications');
-//     Route::get('dashboard',AdminDashboard::class)->name('admin.dashboard');
-// });
-
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::get('admin',AdminDashboard::class);
+Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
+    Route::get('super_admin_dashboard',SuperAdminDashboard::class)->name('super_admin.dashboard');
    // Route::get('login',Login::class);
 });
 
+/**
+ * All admin routes go here
+ */
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('admin_dashboard',AdminDashboard::class)->name('admin.dashboard');
+   // Route::get('login',Login::class);
+});
+
+/**
+ * All user routes go here
+ */
 Route::group(['middleware' => ['auth', 'role:user']], function () {
-    Route::get('dashboard',Dashboard::class);
+    Route::get('dashboard',Dashboard::class)->name('user.dashboard');
+   // Route::get('login',Login::class);
+});
+
+/**
+ * All reviewer routes go here
+ */
+Route::group(['middleware' => ['auth', 'role:reviewer']], function () {
+    Route::get('reviewer_dashboard',Dashboard::class)->name('reviewer.dashboard');
    // Route::get('login',Login::class);
 });
