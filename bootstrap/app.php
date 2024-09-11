@@ -17,11 +17,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //declaring all my role middleware
         $middleware->alias([
-            'admin' => AdminAuthenticated::class,
-            'reviewer' => ReviewerAuthenticated::class,
-            'user' => UserAuthenticated::class,
-            'super-admin' => SuperAdminAuthenticated::class,
-        ])
+            // 'admin' => AdminAuthenticated::class,
+            // 'reviewer' => ReviewerAuthenticated::class,
+            // 'user' => UserAuthenticated::class,
+            // 'super-admin' => SuperAdminAuthenticated::class,
+            'role' => App\Http\Middleware\RoleMiddleware::class,
+        ]);
        
     })
     ->withExceptions(function (Exceptions $exceptions) {
