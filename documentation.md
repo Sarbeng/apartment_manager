@@ -32,6 +32,36 @@ there are four users
 - Reviewer
 - User
 
+### How to create and edit roles
+All files for roles and permissions are found within
+- The User Model : which is found in 'app/Models/User.php'
+- The middleware which serves as a middleground linking our user model and our routes and views, 
+  which is found at 'app/Http/Middleware/RoleMiddleware.php'. 
+  The middleware checks to make sure that a user can't have access to pages that they are not authorized.
+
+#### Creating/Editing a role
+- First make sure that you update the role column of your user table to have the role that you want to add/edit
+- You can edit it in the laravel migration or in MYSQL 
+- in laravel you go create a new migration file <code>php artisan make:migration update_roles_column --table=users</code>
+- In this file you have created you will write your update/alter code
+- Next you will go to your User model and create another role function. eg
+<code> 
+    <!--  define a list of roles -->
+    public const ROLE_USER = 'user';
+
+    // creating an user function 
+    public function isUser() 
+    {
+        return $this->role === self::ROLE_USER;
+    }
+
+</code>
+
+- Next would be to create a route group in 'routes/web.php' which would contain all the various routes grouped by role
+    - copy any of the route groups and paste it below the page and edit where appropriate, no need for drama. 
+    - Hopefully the code would be commented for easy understanding and easy editing
+
+
 
 
 
