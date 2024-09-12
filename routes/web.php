@@ -61,6 +61,6 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
  * All reviewer routes go here
  */
 Route::group(['middleware' => ['auth', 'role:reviewer']], function () {
-    Route::get('reviewer_dashboard',Dashboard::class)->name('reviewer.dashboard');
+    Route::get('reviewer_dashboard',ReviewerDashboard::class)->name('reviewer.dashboard');
    // Route::get('login',Login::class);
 });

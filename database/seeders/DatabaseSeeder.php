@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountriesSeeder::class,
             UserSeeder::class,
+            TitlesAndOtherSeeder::class,
         ]);
 
         // User::create([
