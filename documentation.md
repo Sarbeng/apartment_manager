@@ -61,7 +61,13 @@ All files for roles and permissions are found within
     - copy any of the route groups and paste it below the page and edit where appropriate, no need for drama. 
     - Hopefully the code would be commented for easy understanding and easy editing
 
-
+## Google Authentication
+### How to Setup/Edit Google Authentication. 
+The video below contains a short and concise tutorial about how to go about this.
+You can watch it to know how to setup and edit authentication.
+<code>
+https://www.youtube.com/watch?v=lWqJgqzN7cM
+</code>
 
 
 
