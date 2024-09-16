@@ -56,6 +56,11 @@ class Login extends Component
         }
         
     }
+
+    public function googleAuth () {
+        //dd("Google button clicked");
+        return redirect(route('googleAuth'));
+    }
     public function render()
     {
         return view('livewire.login');

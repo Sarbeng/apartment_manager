@@ -8,5 +8,12 @@
         <x-button class="bg-blue-700 hover:bg-blue-900" type="submit">
             Login
         </x-button>
+        <div class="">
+            <div></div>
+        </div>
+         <x-button wire:click="googleAuth" class="bg-red-600 hover:bg-red-700 " type="button">
+        Login with Google
+    </x-button>
     </form>
+   
 </div>
