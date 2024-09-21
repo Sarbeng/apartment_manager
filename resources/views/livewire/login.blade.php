@@ -11,6 +11,7 @@
         <div class="">
             <div></div>
         </div>
+       <x-divider/>
          <x-button wire:click="googleAuth" class="bg-red-600 hover:bg-red-700 " type="button">
         Login with Google
     </x-button>

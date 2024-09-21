@@ -37,6 +37,10 @@
             <x-button class="bg-blue-700 hover:bg-blue-900 w-full mt-6" type="submit">
                 Register
             </x-button>
+            
+            <x-button wire:click="googleAuth" class="bg-red-600 hover:bg-red-700 " type="button">
+                Login with Google
+            </x-button>
         </div>
 
     </form>
