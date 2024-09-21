@@ -5,12 +5,10 @@
         <x-input wire:model="email" name="email" type="text" label="Email" class="w-full" placeholder="" />
         {{-- <x-input wire:model="password" name="password" type="password" label="Password" class="w-full" /> --}}
         <x-password-input wire:model="password" name="password" class="" label="password" toggle_password="toggle-password"/>
-        <x-button class="bg-blue-700 hover:bg-blue-900" type="submit">
+        <x-button class="bg-blue-700 hover:bg-blue-900 mb-4" type="submit">
             Login
         </x-button>
-        <div class="">
-            <div></div>
-        </div>
+        <x-alternate-action-link routes="register" class=""/>
        <x-divider/>
          <x-button wire:click="googleAuth" class="bg-red-600 hover:bg-red-700 " type="button">
         Login with Google

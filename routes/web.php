@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('login',Login::class)->name('login');
-Route::get('register',Register::class);
+Route::get('register',Register::class)->name('register');
 
 //Route::get('dashboard',Dashboard::class)->middleware('auth');
 
