@@ -33,6 +33,7 @@ class Login extends Component
 
             //get the authenticated user
             $user = Auth::user();
+            
             //dd($user->role);
 
             //checking the user roles to know where to redirect them

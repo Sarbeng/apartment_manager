@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center h-screen overflow-y-scroll bg-white lg:w-4/12 w-full  rounded shadow">
+<div class="flex justify-center items-center h-fit overflow-y-scroll bg-white lg:w-6/12 w-full  rounded shadow">
     {{-- Because she competes with no one, no one can compete with her. --}}
     <form class="py-8 px-8 w-full " wire:submit="save"> 
         <x-error-alert />
@@ -6,7 +6,8 @@
         <div class="grid md:grid-cols-1 grid-cols-1 grid-flow-row gap-2">
             {{-- <x-input wire:model="title" name="title" type="text" label="title" class="w-full"
                 placeholder="" /> --}}
-            <x-input wire:model.live="firstname" name="firstname" type="text" label="First Name" class="w-full"
+            <div class="grid md:grid-cols-2 gap-2">
+                <x-input wire:model.live="firstname" name="firstname" type="text" label="First Name" class="w-full"
                 placeholder="" />
             <x-input wire:model.live="lastname" name="lastname" type="text" label="lastname" class="w-full"
                 placeholder="" />
@@ -16,6 +17,7 @@
                 placeholder="" />
                 <x-password-input wire:model.blur="password" name="password" class="" label="password" toggle_password="toggle_password"/>
                 <x-password-input wire:model.blur="password_confirmation" name="password_confirmation" class="" label="confirm password" toggle_password="toggle"/>
+            </div>
             {{-- <x-input wire:model="country_of_residence" name="country_of_residence" type="text" label="country of residence" class="w-full"
                 placeholder="" /> --}}
             {{-- <x-input wire:model="nationality" name="nationality" type="text" label="nationality" class="w-full"
@@ -37,7 +39,8 @@
             <x-button class="bg-blue-700 hover:bg-blue-900 w-full mt-6" type="submit">
                 Register
             </x-button>
-            
+            <x-alternate-action-link routes="login" class="" action="Sign in"/>
+            <x-divider/>
             <x-button wire:click="googleAuth" class="bg-red-600 hover:bg-red-700 " type="button">
                 Login with Google
             </x-button>

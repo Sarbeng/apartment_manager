@@ -4,9 +4,12 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class Register extends Component
 {
@@ -44,6 +47,23 @@ class Register extends Component
 
     // public $member_since;
 
+    public function verifyNotice () {
+        return view('livewire.verify-email');
+    }
+
+    // this is our emnail handler function
+    public function verifyEmail (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        return redirect()->route('user.dashboard');
+    }
+    
+    // resend the verification email handler
+    public function verifyHandler (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+     
+        return back()->with('message', 'Verification link sent!');
+    }
     public function save()
     {
         $validatedData = $this->validate();
@@ -61,7 +81,13 @@ class Register extends Component
             // The user was created
             session()->flash('success', 'User created successful');
             //sleep(5);
+           
             Auth::login($user);
+          
+
+            // this will trigger the must verify email
+            event(new Registered($user));
+
             return redirect()->intended('/dashboard');
 
         } else {
@@ -77,4 +103,6 @@ class Register extends Component
     {
         return view('livewire.register');
     }
+
+    
 }
