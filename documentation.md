@@ -1,3 +1,5 @@
+# IRB Project Documentation
+
 I used livewire to create the app components
 - I would first creat the component in the terminal
 - which will create two files 
@@ -69,5 +71,40 @@ You can watch it to know how to setup and edit authentication.
 https://www.youtube.com/watch?v=lWqJgqzN7cM
 </code>
 
+## Email Verification
+This application inculcates email verification. Each time someone registers for an account, they would have an email sent to their account and from there they would then verify their account. Currently it works on localhost but in production, it would the domain and work with it, should be interesting right?
 
+
+### How To Add Email Verification to the Project?
+#### Files to take note of
+- "/resources/views/livewire/verify-email.blade.php"
+- "/app/Providers/AppServiceProvider.php"
+- "/app/Livewire/Register.php"
+- "/routes/web.php" : In here we created a few routes to cater for the email verification
+- The **.env** file
+- the livewire documentation link: https://laravel.com/docs/11.x/verification#main-content
+
+### Before you begin sending emails to be verified.
+
+#### Create an App Password
+An __App Password__ is a great way to create a password for an application so you can use it to send mails without using your actual email password. Saves you a lot of password stealing tbh. 
+It is created by going to __Google Accounts__, searching for __App Password__ and then creating it. This password would then be put into your __.env__ file and would serve as your __MAIL_PASSWORD__
+
+There are a number of files that have to be edited
+#### The .env file
+in the .env file you'd have to edit your email details as below, edit the portions where appropriate
+<code>
+<br>
+MAIL_MAILER=smtp <br>
+MAIL_HOST=smtp.gmail.com <br>
+MAIL_PORT=465 <br>
+MAIL_USERNAME="your_email@gmail.com" <br>
+MAIL_PASSWORD="your_app_password" <br>
+MAIL_ENCRYPTION=tls <br>
+MAIL_FROM_ADDRESS="your_email@gmail.com" <br>
+MAIL_FROM_NAME="${APP_NAME}"
+</code>
+
+#### The AppServiceProvider.php
+Within this document we just need to add a few lines of code to enable our mail server, thankfully laravel comes inbuilt with most of these features we need to make our mails work well.
 
