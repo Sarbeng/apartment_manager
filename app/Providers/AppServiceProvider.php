@@ -30,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
         // Livewire::component('button', Button::class);
         // Livewire::component('password-input', PasswordInput::class);
 
+        /**
+         * This is meant to send a mail to the user each time it is called
+         */
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
                 ->subject('Verify Email Address')

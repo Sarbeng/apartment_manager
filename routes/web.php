@@ -114,15 +114,6 @@ Route::get('/email/verify', [Register::class,'verifyNotice'])->middleware('auth'
 // this thing here will do all the heavy lifting
 Route::get('/email/verify/{id}/{hash}', [Register::class,'verifyEmail'])->middleware(['auth', 'signed'])->name('verification.verify');
 
-// Route::get('test', function () {
-
-
-// Mail::raw('This is a test email!', function ($message) {
-//     $message->to('ksarbengbaafi@gmail.com')
-//             ->subject('Test Email from Laravel');
-// });
-
-// });
 
 // resending the verification email
 Route::post('/email/verification-notification', [Register::class,'verifyHandler'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');

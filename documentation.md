@@ -93,18 +93,44 @@ It is created by going to __Google Accounts__, searching for __App Password__ an
 There are a number of files that have to be edited
 #### The .env file
 in the .env file you'd have to edit your email details as below, edit the portions where appropriate
-<code>
-<br>
-MAIL_MAILER=smtp <br>
-MAIL_HOST=smtp.gmail.com <br>
-MAIL_PORT=465 <br>
-MAIL_USERNAME="your_email@gmail.com" <br>
-MAIL_PASSWORD="your_app_password" <br>
-MAIL_ENCRYPTION=tls <br>
-MAIL_FROM_ADDRESS="your_email@gmail.com" <br>
+
+```
+MAIL_MAILER=smtp 
+MAIL_HOST=smtp.gmail.com 
+MAIL_PORT=465 
+MAIL_USERNAME="your_email@gmail.com" 
+MAIL_PASSWORD="your_app_password" 
+MAIL_ENCRYPTION=tls 
+MAIL_FROM_ADDRESS="your_email@gmail.com" 
 MAIL_FROM_NAME="${APP_NAME}"
-</code>
+```
 
 #### The AppServiceProvider.php
-Within this document we just need to add a few lines of code to enable our mail server, thankfully laravel comes inbuilt with most of these features we need to make our mails work well.
+Within this document we just need to add a few lines of code to enable our mail server, thankfully laravel comes inbuilt with most of these features we need to make our mails work well. In our __boot()__ function we would add the following code. Of course we can edit it how we want but the default works fine so why bother right?
 
+```
+     VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+            return (new MailMessage)
+                ->subject('Verify Email Address')
+                ->line('Click the button below to verify your email address.')
+                ->action('Verify Email Address', $url);
+        });
+```
+
+#### The web.php
+These three lines of code do most of the heavy lifting for us when it comes to email verification
+```
+    //email verification route
+Route::get('/email/verify', [Register::class,'verifyNotice'])->middleware('auth')->name('verification.notice');
+```
+
+```
+// email verification handler, when the user clicks on the link sent to their mail, 
+// this thing here will do all the heavy lifting
+Route::get('/email/verify/{id}/{hash}', [Register::class,'verifyEmail'])->middleware(['auth', 'signed'])->name('verification.verify');
+```
+
+```
+// resending the verification email
+Route::post('/email/verification-notification', [Register::class,'verifyHandler'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+```
