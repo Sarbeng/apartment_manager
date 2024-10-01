@@ -77,6 +77,7 @@ This application inculcates email verification. Each time someone registers for 
 
 ### How To Add Email Verification to the Project?
 #### Files to take note of
+- "app/Models/User.php"
 - "/resources/views/livewire/verify-email.blade.php"
 - "/app/Providers/AppServiceProvider.php"
 - "/app/Livewire/Register.php"
@@ -84,14 +85,14 @@ This application inculcates email verification. Each time someone registers for 
 - The **.env** file
 - the livewire documentation link: https://laravel.com/docs/11.x/verification#main-content
 
-### Before you begin sending emails to be verified.
+## Before you begin sending emails to be verified.
 
-#### Create an App Password
+### Create an App Password
 An __App Password__ is a great way to create a password for an application so you can use it to send mails without using your actual email password. Saves you a lot of password stealing tbh. 
 It is created by going to __Google Accounts__, searching for __App Password__ and then creating it. This password would then be put into your __.env__ file and would serve as your __MAIL_PASSWORD__
 
 There are a number of files that have to be edited
-#### The .env file
+### The .env file
 in the .env file you'd have to edit your email details as below, edit the portions where appropriate
 
 ```
@@ -104,8 +105,27 @@ MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="your_email@gmail.com" 
 MAIL_FROM_NAME="${APP_NAME}"
 ```
+### The User Model
+in our user model we will add a few lines to enable us to send emails.
+first we will change 
+```
+class User extends Authenticatable
+``` 
+to 
+```
+class User extends Authenticatable implements MustVerifyEmail
+```
 
-#### The AppServiceProvider.php
+We will then import two elements
+```
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+```
+
+After which we will add `use Notifiable;` to the beginning of our User class
+
+
+### The AppServiceProvider.php
 Within this document we just need to add a few lines of code to enable our mail server, thankfully laravel comes inbuilt with most of these features we need to make our mails work well. In our __boot()__ function we would add the following code. Of course we can edit it how we want but the default works fine so why bother right?
 
 ```
@@ -117,8 +137,8 @@ Within this document we just need to add a few lines of code to enable our mail 
         });
 ```
 
-#### The web.php
-These three lines of code do most of the heavy lifting for us when it comes to email verification
+### The web.php
+These three lines of code do most of the heavy lifting for us when it comes to email verification in our `web.php`
 ```
     //email verification route
 Route::get('/email/verify', [Register::class,'verifyNotice'])->middleware('auth')->name('verification.notice');
@@ -134,3 +154,41 @@ Route::get('/email/verify/{id}/{hash}', [Register::class,'verifyEmail'])->middle
 // resending the verification email
 Route::post('/email/verification-notification', [Register::class,'verifyHandler'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 ```
+
+### The Register.php
+I know we said the `web.php` does most of the heavy lifting? Well thats not entirely true. The `/app/Livewire/Register.php` actually does the heavy lifting. Below are listed functions within our `Register.php` that go hand in hand with the routes in our `web.php` to allow us to handle email verification.
+
+
+The first being the `verifyNotice()` function, which would just display our email verification page
+```
+    public function verifyNotice () {
+        return view('livewire.verify-email');
+    }
+```
+
+The `verifyEmail()` function is our email handler function, this function will verify our user for us and update our
+```
+    public function verifyEmail (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        return redirect()->route('user.dashboard');
+    }
+   ``` 
+
+  The `verifyHandler` function will resend the verification email handler
+   ```
+    public function verifyHandler (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+     
+        return back()->with('message', 'Verification link sent!');
+    }
+    ```
+
+import the following to enable our functions to work well
+
+```
+    use Illuminate\Auth\Events\Registered;
+    use Illuminate\Foundation\Auth\EmailVerificationRequest;
+```
+
+and add `event(new Registered($user));` just before our redirect in our `save()` function, this will trigger user verification for each new user who registers.
