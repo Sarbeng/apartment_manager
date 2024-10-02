@@ -12,6 +12,8 @@ class Login extends Component
     public $email;
     public $password;
 
+    public $remember_me = false;
+
     protected $rules = [
         'email' => 'required|email',
         'password' => 'required|min:6',
@@ -26,7 +28,7 @@ class Login extends Component
 
 
         // here i am checking if the details entered match what we have in the database and if it does we log the user in
-        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']],$this->remember_me)) {
             // Redirect on successful login
             session()->regenerate();
             //return redirect()->intended('dashboard');

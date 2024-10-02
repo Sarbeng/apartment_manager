@@ -8,6 +8,7 @@
         <x-button class="bg-blue-700 hover:bg-blue-900 mb-4" type="submit">
             Login
         </x-button>
+        <x-checkbox wire:model="remember_me" name="remember_me" label="Remember Me" />
         <x-alternate-action-link routes="register" class="" action="Sign Up"/>
        <x-divider/>
          <x-button wire:click="googleAuth" class="bg-red-600 hover:bg-red-700 " type="button">

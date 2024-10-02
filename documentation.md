@@ -84,6 +84,7 @@ This application inculcates email verification. Each time someone registers for 
 - "/routes/web.php" : In here we created a few routes to cater for the email verification
 - The **.env** file
 - the livewire documentation link: https://laravel.com/docs/11.x/verification#main-content
+- tutotial link: https://medium.com/@akhmadshaleh/sending-email-with-laravel-10-and-gmail-49be01c2bc8f 
 
 ## Before you begin sending emails to be verified.
 
