@@ -8,10 +8,10 @@ use Livewire\Component;
 
 class Dashboard  extends Component
 {
-    //#[Layout($this->determineLayout())]
+    #[Layout('components.layouts.admin')]
     public function render()
     {
-        return view('livewire.admin.dashboard')
-                ->layout('components.layouts.admin');
+        return view('livewire.admin.dashboard');
+                //->layout('components.layouts.admin');
     }
 }
