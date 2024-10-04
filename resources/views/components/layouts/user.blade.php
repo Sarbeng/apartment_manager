@@ -9,7 +9,16 @@
     <body class="h-screen bg-gray-100" x-data="{ open: false }">
         <div class="flex h-screen">
             <!-- Sidebar Component -->
-            <x-dashboard.sidebar />
+            <x-dashboard.sidebar>
+                {{-- sidebar links would go here --}}
+                <x-dashboard.sidebar-links href="dashboard" active="{{ request()->is('dashboard')}}" icon="heroicon-o-computer-desktop">
+                    Dashboard
+                </x-dashboard.sidebar-links>
+                <x-dashboard.sidebar-links>
+                    Dashboard
+                </x-dashboard.sidebar-links>
+            </x-dashboard.sidebar>
+            </>
 
             <!-- Main Content Area -->
             <div class="flex-1 flex flex-col">
