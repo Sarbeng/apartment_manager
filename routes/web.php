@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\ForgotPassword;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Livewire\Reviewer\Dashboard as ReviewerDashboard;
 use App\Livewire\SuperAdmin\Dashboard as SuperAdminDashboard;
@@ -117,3 +118,9 @@ Route::get('/email/verify/{id}/{hash}', [Register::class,'verifyEmail'])->middle
 
 // resending the verification email
 Route::post('/email/verification-notification', [Register::class,'verifyHandler'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+/**
+ * Forgot Password Routes
+ */
+
+ Route::get('/forgot-password', [ForgotPassword::class,'render'])->name('password.request');

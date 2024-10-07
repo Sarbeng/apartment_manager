@@ -72,7 +72,7 @@ https://www.youtube.com/watch?v=lWqJgqzN7cM
 </code>
 
 ## Email Verification
-This application inculcates email verification. Each time someone registers for an account, they would have an email sent to their account and from there they would then verify their account. Currently it works on localhost but in production, it would the domain and work with it, should be interesting right?
+This application inculcates email verification. Each time someone registers for an account, they would have an email sent to their account and from there they would then verify their account. Currently it works on localhost but in production, it would the domain and work with it, should be interesting right? 
 
 
 ### How To Add Email Verification to the Project?
@@ -85,6 +85,7 @@ This application inculcates email verification. Each time someone registers for 
 - The **.env** file
 - the livewire documentation link: https://laravel.com/docs/11.x/verification#main-content
 - tutotial link: https://medium.com/@akhmadshaleh/sending-email-with-laravel-10-and-gmail-49be01c2bc8f 
+- video link https://www.youtube.com/watch?v=uFCYvRT0hy0 
 
 ## Before you begin sending emails to be verified.
 
