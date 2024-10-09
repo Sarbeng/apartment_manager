@@ -13,6 +13,7 @@ use App\Http\Controllers\MailController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\ForgotPassword;
+use App\Livewire\ResetPassword;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Livewire\Reviewer\Dashboard as ReviewerDashboard;
 use App\Livewire\SuperAdmin\Dashboard as SuperAdminDashboard;
@@ -124,3 +125,7 @@ Route::post('/email/verification-notification', [Register::class,'verifyHandler'
  */
 
  Route::get('/forgot-password', [ForgotPassword::class,'render'])->name('password.request');
+
+ Route::post('/forgot-password',[ForgotPassword::class,'forgotPassword'])->name('password.email');
+
+ Route::get('/reset-password/{token}', [ResetPassword::class])->name('password.reset');
