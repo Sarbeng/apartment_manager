@@ -128,4 +128,9 @@ Route::post('/email/verification-notification', [Register::class,'verifyHandler'
 
  Route::post('/forgot-password',[ForgotPassword::class,'forgotPassword'])->name('password.email');
 
- Route::get('/reset-password/{token}', [ResetPassword::class])->name('password.reset');
+/**
+ * Reset Password Routes
+ *  */ 
+
+ Route::get('/reset-password/{token}', [ResetPassword::class,'render'])->name('password.reset');
+ Route::post('/reset-password',[ResetPassword::class,'resetPassword'])->name('password.update');
