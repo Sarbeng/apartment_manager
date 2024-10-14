@@ -1,5 +1,5 @@
 # IRB Project Documentation
-
+## Author: Kwadwo Sarbeng-Baafi
 I used livewire to create the app components
 - I would first creat the component in the terminal
 - which will create two files 
@@ -184,7 +184,7 @@ The `verifyEmail()` function is our email handler function, this function will v
      
         return back()->with('message', 'Verification link sent!');
     }
-    ```
+```
 
 import the following to enable our functions to work well
 
@@ -194,3 +194,7 @@ import the following to enable our functions to work well
 ```
 
 and add `event(new Registered($user));` just before our redirect in our `save()` function, this will trigger user verification for each new user who registers.
+
+
+## Forgot Password
+Users would periodically forget their password, as such we(I) worked on 
