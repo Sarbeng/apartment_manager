@@ -196,5 +196,28 @@ import the following to enable our functions to work well
 and add `event(new Registered($user));` just before our redirect in our `save()` function, this will trigger user verification for each new user who registers.
 
 
-## Forgot Password
-Users would periodically forget their password, as such we(I) worked on 
+## Forgot Password & Reset Password
+Users would periodically forget their password, as such we(I) worked on enabling said users to be able to retrieve their passwords if need be.
+
+### Files to consider for forgot password & reset password
+- '/resources/views/livewire/forgot-password.blade.php'
+- '/resources/views/livewire/reset-password.blade.php'
+- '/app/Livewire/ForgotPassword.php'
+- '/app/Livewire/ResetPassword.php'
+- '/routes/web.php'
+
+### How to tackle Forgot Password
+We'd have to tackle forgot password before we tackle password reset. 
+For `Forgot Password` we first need our `Forgot Password Routes` , within `/routes/web.php`
+where we will paste
+``` 
+ Route::get('/forgot-password', [ForgotPassword::class,'render'])->name('password.request');
+
+ Route::post('/forgot-password',[ForgotPassword::class,'forgotPassword'])->name(name: 'password.email');
+
+```
+
+We didn't use controllers, rather we used livewire components to handle our classes and functions as you see in the code above. 
+
+Next we'd go into our `/app/Livewire/ForgotPassword.php` 
+
