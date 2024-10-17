@@ -219,5 +219,85 @@ where we will paste
 
 We didn't use controllers, rather we used livewire components to handle our classes and functions as you see in the code above. 
 
-Next we'd go into our `/app/Livewire/ForgotPassword.php` 
+Next we'd go into our `/app/Livewire/ForgotPassword.php` and add functions to it like so :
+
+```
+
+    public $email;
+
+    public function forgotPassword (Request $request) 
+    {
+        //validating our inputs
+        $validated = $request->validate([
+            'email' => 'required|email|exists:users,email'
+        ]);
+       // $this->validated();
+
+        //
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        //
+        return $status === Password::RESET_LINK_SENT
+                        ? back()->with(['status' => __($status)])
+                        : back()->withErrors(['email' => __($status)]);
+
+        
+    }
+
+```
+
+What this code essentially does is, when we go to the route named `password.email` on our `/resources/views/livewire/forgot-password.blade.php` view, it will take the inputed email and send them an email to reset their password. 
+If successful it returns a nice status message to let us know that we did good, else it returns an error.
+
+### Tackling Reset Password
+After the individual clicks the link in their mail, they will be redirected to these routes
+
+```
+
+Route::get('/reset-password/{token}', [ResetPassword::class,'render'])->name('password.reset');
+Route::post('/reset-password',[ResetPassword::class,'resetPassword'])->name('password.update');
+
+```
+
+specifically the `/reset-password/{token}` link. This link will take a token from the email to enable us to reset the persons password without requiring the person to enter all their details.
+
+This page opened by this link will contain `email`,`password` and `confirm password` sections. The good thing about this page is that without the token, this page will never open. Securittyyyyy!!!!! Thats important.
+
+The actual work is done when you submit your details to reset your password. Submitting goes to the route named `password.update`
+
+```
+
+public function resetPassword (Request $request) 
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+    
+        
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+     
+                $user->save();
+     
+                event(new PasswordReset($user));
+            }
+        );
+     
+        return $status === Password::PASSWORD_RESET
+                    ? redirect()->route('login')->with('status', __($status))
+                    : back()->withErrors(['email' => [__($status)]]);
+    }
+
+```
+
+This code validates the inputs and makes sure the user submites the right information first.
+Then it invokes the `Password` facade to help us to reset the users password. In simple terms. 
 
