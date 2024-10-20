@@ -1,5 +1,36 @@
 # IRB Project Documentation
 ## Author: Kwadwo Sarbeng-Baafi
+
+## Purpose of the Project
+Why was this project necessary? It became necessary for this to be built when the current existing software which was supplied by a third party became too expensive for the University to pay? Chisel? Maybe. But long story short, the `University of Cape Coast` was to cough up a sum of `$20,000` dollars to said third party in order to continue using the software. Sadly the Vice Chancellor insisted that the school has no such money lying around and that it would be better to build in house. Hence this software. The main point of this project is to allow the `staff` and `students` of the university of Cape submit their research applications for the review by the `Institutional Review Board` 
+
+## Features of the Project
+- Login - `100% complete`
+- Registration - `100% complete`
+- Role Assignment & Page Restriction by Role - `On Going`
+- Forgot Password & Password Reset - `100% complete`
+- Full Project Documentation - `On Going`
+- Dashboard Template - `30% complete`
+    - Components collection for inputs, buttons, dividers, links, charts, tables etc to facilitate resuable code
+    - Admin Dashboard
+    - Super Admin Dashboard
+    - Reviewer Dashboard
+    - User Dashboard
+- Research Application Module
+    - document upload
+    - application form filling, editing, viewing and deletion
+    - document viewing (being able to view uploaded documents to verify if they are the right ones)
+    - Document Deletion
+    - Application form automatic save (optional)
+- Meeting Scheduling Module
+- Application Review Module
+    - Reviewer Assignment by Admin
+    - Reviewer reviewing application
+    - Review Status Checking
+- User Creation & Role Assignment Module
+
+
+## Introduction
 I used livewire to create the app components
 - I would first creat the component in the terminal
 - which will create two files 
