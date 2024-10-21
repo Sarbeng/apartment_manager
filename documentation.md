@@ -7,6 +7,7 @@ Why was this project necessary? It became necessary for this to be built when th
 ## Features of the Project
 - Login - `100% complete`
 - Registration - `100% complete`
+- Google Authentication - `100% complete`
 - Role Assignment & Page Restriction by Role - `On Going`
 - Forgot Password & Password Reset - `100% complete`
 - Full Project Documentation - `On Going`
@@ -332,3 +333,5 @@ public function resetPassword (Request $request)
 This code validates the inputs and makes sure the user submites the right information first.
 Then it invokes the `Password` facade to help us to reset the users password. In simple terms. 
 
+# Extra to Consider Adding
+- https://quilljs.com/docs/modules/toolbar 

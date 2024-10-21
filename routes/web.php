@@ -6,18 +6,21 @@ use App\Livewire\Register;
 use App\Livewire\Dashboard;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Livewire\VerifyEmail;
+use App\Livewire\Applications;
+use App\Livewire\ResetPassword;
+use App\Livewire\ForgotPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
-use App\Livewire\ForgotPassword;
-use App\Livewire\ResetPassword;
+use App\Livewire\NewApplications;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Livewire\Reviewer\Dashboard as ReviewerDashboard;
+use App\Livewire\Reviewer\ReviewAssignments;
 use App\Livewire\SuperAdmin\Dashboard as SuperAdminDashboard;
-use App\Livewire\VerifyEmail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,7 +43,7 @@ Route::get('logout', function (Request $request) {
 
     return redirect('/login');
 
-})->middleware('auth');
+})->middleware('auth')->name('logout');
 
 /**
  * All super admin routes go here
@@ -63,6 +66,8 @@ Route::group(['middleware' => ['auth','verified', 'role:admin']], function () {
  */
 Route::group(['middleware' => ['auth','verified', 'role:user']], function () {
     Route::get('dashboard', Dashboard::class)->name('user.dashboard');
+    Route::get('applications',Applications::class)->name('user.applications');
+    Route::get('new_applications',NewApplications::class)->name('user.new_applications');
     // Route::get('login',Login::class);
 });
 
@@ -71,6 +76,7 @@ Route::group(['middleware' => ['auth','verified', 'role:user']], function () {
  */
 Route::group(['middleware' => ['auth','verified', 'role:reviewer']], function () {
     Route::get('reviewer_dashboard', ReviewerDashboard::class)->name('reviewer.dashboard');
+    Route::get('reviewer_assignments',ReviewAssignments::class)->name('reviewer.assignments');
     // Route::get('login',Login::class);
 });
 
