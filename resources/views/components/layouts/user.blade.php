@@ -11,12 +11,19 @@
             <!-- Sidebar Component -->
             <x-dashboard.sidebar>
                 {{-- sidebar links would go here --}}
-                <x-dashboard.sidebar-links href="dashboard" active="{{ request()->is('dashboard')}}" icon="heroicon-o-computer-desktop">
+                <x-dashboard.sidebar-links href="{{route('user.dashboard')}}" active="{{ request()->is('dashboard')}}" icon="heroicon-o-squares-2x2">
                     Dashboard
                 </x-dashboard.sidebar-links>
-                <x-dashboard.sidebar-links>
-                    Dashboard
+                <x-dashboard.sidebar-links href="{{route('user.applications')}}" active="{{ request()->is('applications') }}" icon="heroicon-o-squares-plus">
+                    My Applications
+                 </x-dashboard.sidebar-links>
+                <x-dashboard.sidebar-links href="{{route('user.new_applications')}}" active="{{ request()->is('new_applications') }}" icon="heroicon-o-squares-plus">
+                   Create New Application
                 </x-dashboard.sidebar-links>
+                <x-dashboard.sidebar-links href="{{route('user.notifications')}}" active="{{ request()->is('notifications') }}" icon="heroicon-o-bell">
+                   Notifications
+                 </x-dashboard.sidebar-links>
+                
             </x-dashboard.sidebar>
             </>
 

@@ -8,18 +8,19 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Livewire\VerifyEmail;
 use App\Livewire\Applications;
+use App\Livewire\Notifications;
 use App\Livewire\ResetPassword;
 use App\Livewire\ForgotPassword;
+use App\Livewire\NewApplications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Livewire\Reviewer\ReviewAssignments;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
-use App\Livewire\NewApplications;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Livewire\Reviewer\Dashboard as ReviewerDashboard;
-use App\Livewire\Reviewer\ReviewAssignments;
 use App\Livewire\SuperAdmin\Dashboard as SuperAdminDashboard;
 
 Route::get('/', function () {
@@ -68,6 +69,7 @@ Route::group(['middleware' => ['auth','verified', 'role:user']], function () {
     Route::get('dashboard', Dashboard::class)->name('user.dashboard');
     Route::get('applications',Applications::class)->name('user.applications');
     Route::get('new_applications',NewApplications::class)->name('user.new_applications');
+    Route::get('notifications',Notifications::class)->name('user.notifications');
     // Route::get('login',Login::class);
 });
 
