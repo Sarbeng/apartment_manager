@@ -9,7 +9,22 @@
     <body class="h-screen bg-gray-100" x-data="{ open: false }">
         <div class="flex h-screen">
             <!-- Sidebar Component -->
-            <x-dashboard.sidebar />
+            <x-dashboard.sidebar>
+                {{-- sidebar links would go here --}}
+                <x-dashboard.sidebar-links href="{{route('user.dashboard')}}" active="{{ request()->is('dashboard')}}" icon="heroicon-o-squares-2x2">
+                    Dashboard
+                </x-dashboard.sidebar-links>
+                <x-dashboard.sidebar-links href="{{route('user.applications')}}" active="{{ request()->is('applications') }}" icon="heroicon-o-squares-plus">
+                    My Applications
+                 </x-dashboard.sidebar-links>
+                <x-dashboard.sidebar-links href="{{route('user.new_applications')}}" active="{{ request()->is('new_applications') }}" icon="heroicon-o-squares-plus">
+                   Create New Application
+                </x-dashboard.sidebar-links>
+                <x-dashboard.sidebar-links href="{{route('user.notifications')}}" active="{{ request()->is('notifications') }}" icon="heroicon-o-bell">
+                   Notifications
+                 </x-dashboard.sidebar-links>
+                
+            </x-dashboard.sidebar>
 
             <!-- Main Content Area -->
             <div class="flex-1 flex flex-col">
