@@ -16,9 +16,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Livewire\Admin\ApplicationsManagement;
 use Laravel\Socialite\Facades\Socialite;
 use App\Livewire\Reviewer\ReviewAssignments;
+use App\Livewire\Reviewer\Notifications as ReviewerNotifications;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Admin\Reports\ApplicationsReport;
+use App\Livewire\Admin\Reports\FocusOfResearchReport;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Livewire\Reviewer\Dashboard as ReviewerDashboard;
 use App\Livewire\SuperAdmin\Dashboard as SuperAdminDashboard;
@@ -59,6 +63,9 @@ Route::group(['middleware' => ['auth','verified', 'role:super-admin']], function
  */
 Route::group(['middleware' => ['auth','verified', 'role:admin']], function () {
     Route::get('admin_dashboard', AdminDashboard::class)->name('admin.dashboard');
+    Route::get('applications_management',ApplicationsManagement::class)->name('admin.applications_management');
+    Route::get('applications_report',ApplicationsReport::class)->name('admin.applications_report');
+    Route::get('focus_of_research_report',FocusOfResearchReport::class)->name('admin.focus_of_research_report');
     // Route::get('login',Login::class);
 });
 
@@ -79,6 +86,7 @@ Route::group(['middleware' => ['auth','verified', 'role:user']], function () {
 Route::group(['middleware' => ['auth','verified', 'role:reviewer']], function () {
     Route::get('reviewer_dashboard', ReviewerDashboard::class)->name('reviewer.dashboard');
     Route::get('reviewer_assignments',ReviewAssignments::class)->name('reviewer.assignments');
+    Route::get('reviewer_notifications',ReviewerNotifications::class)->name('reviewer.notifications');
     // Route::get('login',Login::class);
 });
 
